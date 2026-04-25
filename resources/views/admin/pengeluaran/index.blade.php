@@ -148,19 +148,21 @@
                                     <td>{{ $item->keterangan ? Str::limit($item->keterangan, 50) : '-' }}</td>
                                     <td>{{ $item->dibuatOleh->nama }}</td>
                                     <td>
-                                        <a href="{{ route('admin.pengeluaran.show', $item->id) }}" class="btn btn-sm btn-info" title="Detail">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route('admin.pengeluaran.edit', $item->id) }}" class="btn btn-sm btn-warning" title="Edit">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <form action="{{ route('admin.pengeluaran.destroy', $item->id) }}" method="POST" class="d-flex" onsubmit="return confirm('Yakin ingin menghapus?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
+                                        <div class="d-flex flex-nowrap gap-1">
+                                            <a href="{{ route('admin.pengeluaran.show', $item->id) }}" class="btn btn-sm btn-info" title="Detail">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('admin.pengeluaran.edit', $item->id) }}" class="btn btn-sm btn-warning" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form action="{{ route('admin.pengeluaran.destroy', $item->id) }}" method="POST" class="d-flex" onsubmit="return confirm('Yakin ingin menghapus?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

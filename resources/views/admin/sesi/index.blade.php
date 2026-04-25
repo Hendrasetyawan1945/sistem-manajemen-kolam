@@ -69,22 +69,24 @@
                                     <td>{{ $item->waktu_mulai }} - {{ $item->waktu_selesai }}</td>
                                     <td>{{ $item->catatan ?? '-' }}</td>
                                     <td>
-                                        <a href="{{ route('admin.sesi.attendance', $item->id) }}" class="btn btn-sm btn-success" title="Input Kehadiran">
-                                            <i class="fas fa-check-circle"></i>
-                                        </a>
-                                        <a href="{{ route('admin.sesi.show', $item->id) }}" class="btn btn-sm btn-info" title="Detail">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route('admin.sesi.edit', $item->id) }}" class="btn btn-sm btn-warning" title="Edit">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <form action="{{ route('admin.sesi.destroy', $item->id) }}" method="POST" class="d-flex" onsubmit="return confirm('Yakin ingin menghapus sesi ini?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
+                                        <div class="d-flex flex-nowrap gap-1">
+                                            <a href="{{ route('admin.sesi.attendance', $item->id) }}" class="btn btn-sm btn-success" title="Input Kehadiran">
+                                                <i class="fas fa-check-circle"></i>
+                                            </a>
+                                            <a href="{{ route('admin.sesi.show', $item->id) }}" class="btn btn-sm btn-info" title="Detail">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('admin.sesi.edit', $item->id) }}" class="btn btn-sm btn-warning" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form action="{{ route('admin.sesi.destroy', $item->id) }}" method="POST" class="d-flex" onsubmit="return confirm('Yakin ingin menghapus sesi ini?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

@@ -142,16 +142,18 @@
                                     <td>{{ $item->tanggal_bayar ? formatTanggal($item->tanggal_bayar) : '-' }}</td>
                                     <td>{{ $item->metodePembayaran->nama ?? '-' }}</td>
                                     <td>
-                                        <a href="{{ route('admin.iuran-rutin.edit', $item->id) }}" class="btn btn-sm btn-warning" title="Edit">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <form action="{{ route('admin.iuran-rutin.destroy', $item->id) }}" method="POST" class="d-flex" onsubmit="return confirm('Yakin ingin menghapus?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
+                                        <div class="d-flex flex-nowrap gap-1">
+                                            <a href="{{ route('admin.iuran-rutin.edit', $item->id) }}" class="btn btn-sm btn-warning" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form action="{{ route('admin.iuran-rutin.destroy', $item->id) }}" method="POST" class="d-flex" onsubmit="return confirm('Yakin ingin menghapus?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Hapus">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
