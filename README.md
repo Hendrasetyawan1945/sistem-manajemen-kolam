@@ -189,6 +189,7 @@ orderByRaw("FIELD(col, 'a', 'b')")
 ## 📁 Spec & Dokumentasi
 
 Dokumentasi lengkap ada di:
+- `docs/alur-sistem.md` — **alur kerja lengkap semua fitur** (flowchart)
 - `.kiro/specs/sistem-manajemen-klub-renang/requirements.md` — 31 requirements
 - `.kiro/specs/sistem-manajemen-klub-renang/design.md` — desain teknis
 - `.kiro/specs/sistem-manajemen-klub-renang/tasks.md` — progress implementasi
