@@ -146,7 +146,7 @@
                                     </td>
                                     <td><strong class="text-danger">{{ formatRupiah($item->jumlah) }}</strong></td>
                                     <td>{{ $item->keterangan ? Str::limit($item->keterangan, 50) : '-' }}</td>
-                                    <td>{{ $item->dibuatOleh->nama }}</td>
+                                    <td>{{ $item->dibuatOleh->name }}</td>
                                     <td>
                                         <div class="d-flex flex-nowrap gap-1">
                                             <a href="{{ route('admin.pengeluaran.show', $item->id) }}" class="btn btn-sm btn-info" title="Detail">

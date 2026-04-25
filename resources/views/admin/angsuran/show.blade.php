@@ -72,7 +72,7 @@
                         </tr>
                         <tr>
                             <th>Dibuat Oleh</th>
-                            <td>{{ $angsuran->dibuatOleh->nama }}</td>
+                            <td>{{ $angsuran->dibuatOleh->name }}</td>
                         </tr>
                         <tr>
                             <th>Tanggal Dibuat</th>
@@ -203,7 +203,7 @@
                                     <td><strong>{{ formatRupiah($detail->jumlah_bayar) }}</strong></td>
                                     <td>{{ $detail->metodePembayaran->nama ?? '-' }}</td>
                                     <td>{{ $detail->catatan ?? '-' }}</td>
-                                    <td>{{ $detail->dibuatOleh->nama }}</td>
+                                    <td>{{ $detail->dibuatOleh->name }}</td>
                                     <td>
                                         @if($angsuran->status == 'aktif')
                                             <form action="{{ route('admin.angsuran.deletePayment', [$angsuran, $detail]) }}" method="POST" class="d-flex" onsubmit="return confirm('Yakin ingin menghapus pembayaran ini?')">

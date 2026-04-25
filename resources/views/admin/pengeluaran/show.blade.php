@@ -57,7 +57,7 @@
                         </tr>
                         <tr>
                             <th>Dibuat Oleh</th>
-                            <td>{{ $pengeluaran->dibuatOleh->nama }}</td>
+                            <td>{{ $pengeluaran->dibuatOleh->name }}</td>
                         </tr>
                         <tr>
                             <th>Tanggal Dibuat</th>
