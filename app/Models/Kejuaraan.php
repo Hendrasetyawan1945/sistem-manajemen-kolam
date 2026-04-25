@@ -16,6 +16,8 @@ class Kejuaraan extends Model
         'tanggal_mulai',
         'tanggal_selesai',
         'lokasi',
+        'biaya_pendaftaran',
+        'deskripsi',
         'keterangan',
     ];
 
