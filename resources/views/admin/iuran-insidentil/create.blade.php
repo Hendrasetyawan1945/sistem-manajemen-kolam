@@ -14,6 +14,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Form Iuran Insidentil</h6>
         </div>
         <div class="card-body">
+            <x-alert />
             <form action="{{ route('admin.iuran-insidentil.store') }}" method="POST">
                 @csrf
 

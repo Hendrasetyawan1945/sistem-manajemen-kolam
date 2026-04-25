@@ -14,6 +14,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Form Pendaftaran Kejuaraan</h6>
         </div>
         <div class="card-body">
+            <x-alert />
             <form action="{{ route('admin.iuran-kejuaraan.store') }}" method="POST">
                 @csrf
 
