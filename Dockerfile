@@ -20,11 +20,11 @@ RUN apt-get update && apt-get install -y \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
+# Install PHP extensions (only those NOT already built-in to php:8.3-apache)
+# Already built-in: curl, dom, fileinfo, json, pdo, tokenizer, xml
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \
         gd \
-        pdo \
         pdo_mysql \
         pgsql \
         pdo_pgsql \
@@ -34,12 +34,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         pcntl \
         bcmath \
         intl \
-        opcache \
-        curl \
-        dom \
-        xml \
-        fileinfo \
-        tokenizer
+        opcache
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
