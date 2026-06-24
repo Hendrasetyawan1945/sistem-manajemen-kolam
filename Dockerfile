@@ -51,8 +51,9 @@ COPY . .
 
 # Install Node dependencies (dev deps needed for Vite/Tailwind build) and build frontend
 # Use NODE_ENV=development because Railway sets production by default, which skips devDependencies.
-# Upgrade npm via corepack (avoids using buggy npm 10.8.2 to install itself).
-RUN corepack enable && corepack prepare npm@10.9.2 --activate \
+# Use corepack to switch to npm 10.9.2 (avoids buggy npm 10.8.2).
+# 'corepack use' sets packageManager in package.json so corepack intercepts all npm calls.
+RUN corepack enable && corepack use npm@10.9.2 \
     && NODE_ENV=development npm install --no-audit --no-fund \
     && npm run build
 
