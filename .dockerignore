@@ -1,0 +1,13 @@
+.git
+node_modules
+vendor
+.env
+.env.*
+!.env.example
+.idea
+.vscode
+.DS_Store
+Thumbs.db
+*.log
+coverage
+.phpunit.result.cache
