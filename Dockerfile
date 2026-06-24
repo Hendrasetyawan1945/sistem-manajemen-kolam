@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     git \
     zip \
     unzip \
+    pkg-config \
     libgd-dev \
     libpng-dev \
     libjpeg-dev \
