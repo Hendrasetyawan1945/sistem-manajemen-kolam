@@ -1,6 +1,17 @@
 {
   "$schema": "https://schema.railpack.com",
   "packages": {
-    "php": "8.3"
-  }
+    "php": "8.3.21"
+  },
+  "aptPackages": [
+    "libgd-dev",
+    "libpng-dev",
+    "libjpeg-dev",
+    "libfreetype6-dev",
+    "libzip-dev",
+    "libxml2-dev",
+    "libonig-dev",
+    "libicu-dev",
+    "libcurl4-openssl-dev"
+  ]
 }
