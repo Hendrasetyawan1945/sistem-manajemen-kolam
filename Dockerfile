@@ -53,8 +53,8 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . .
 
-# Install Node dependencies and build frontend assets (Vite/Tailwind)
-RUN npm install && npm run build
+# Install Node dependencies (include dev for Vite/Tailwind build tools) and build frontend
+RUN npm install --include=dev && npm run build
 
 # Install PHP dependencies (production only)
 RUN composer install --no-dev --optimize-autoloader --no-interaction
