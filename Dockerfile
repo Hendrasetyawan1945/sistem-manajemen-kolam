@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libicu-dev \
     libcurl4-openssl-dev \
+    libpq-dev \
     zip \
     unzip \
     git \
@@ -43,6 +44,8 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         intl \
         opcache \
         curl \
+        pgsql \
+        pdo_pgsql \
         dom \
         xml \
         fileinfo \
