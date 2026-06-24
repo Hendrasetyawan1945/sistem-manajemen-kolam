@@ -1,19 +1,11 @@
-# Stage 1: Build frontend assets
-FROM node:20-bookworm-slim AS node-builder
-
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-RUN npm run build
-
-# Stage 2: PHP application
 FROM php:8.3-apache
 
-# Install system dependencies
+# Install system dependencies + Node.js 20 via nodesource
 RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    zip \
+    unzip \
     libgd-dev \
     libpng-dev \
     libjpeg-dev \
@@ -24,10 +16,8 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     libcurl4-openssl-dev \
     libpq-dev \
-    zip \
-    unzip \
-    git \
-    curl \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
@@ -36,6 +26,8 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         gd \
         pdo \
         pdo_mysql \
+        pgsql \
+        pdo_pgsql \
         mbstring \
         zip \
         exif \
@@ -44,8 +36,6 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         intl \
         opcache \
         curl \
-        pgsql \
-        pdo_pgsql \
         dom \
         xml \
         fileinfo \
@@ -63,8 +53,8 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . .
 
-# Copy built frontend assets from node stage
-COPY --from=node-builder /app/public/build ./public/build
+# Install Node dependencies and build frontend assets (Vite/Tailwind)
+RUN npm install && npm run build
 
 # Install PHP dependencies (production only)
 RUN composer install --no-dev --optimize-autoloader --no-interaction
@@ -86,7 +76,7 @@ RUN echo '<VirtualHost *:80>\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
-# Configure PHP for production
+# Configure PHP OPcache for production
 RUN echo "opcache.enable=1\n\
 opcache.memory_consumption=128\n\
 opcache.interned_strings_buffer=8\n\
@@ -96,7 +86,6 @@ opcache.fast_shutdown=1" > /usr/local/etc/php/conf.d/opcache.ini
 
 EXPOSE 80
 
-# Bootstrap script: generate app key if missing, run migrations, then start Apache
 CMD bash -c "\
     php artisan config:cache && \
     php artisan route:cache && \
