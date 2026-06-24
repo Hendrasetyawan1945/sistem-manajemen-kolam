@@ -49,8 +49,12 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . .
 
-# Install Node dependencies (include dev for Vite/Tailwind build tools) and build frontend
-RUN npm install --include=dev && npm run build
+# Install Node dependencies (dev deps needed for Vite/Tailwind build) and build frontend
+# Use NODE_ENV=development because Railway sets production by default, which skips devDependencies.
+# Update npm first to avoid 'Exit handler never called' bug in npm 10.8.2.
+RUN npm install -g npm@10.9.2 \
+    && NODE_ENV=development npm install --no-audit --no-fund \
+    && npm run build
 
 # Install PHP dependencies (production only)
 RUN composer install --no-dev --optimize-autoloader --no-interaction
