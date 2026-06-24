@@ -51,8 +51,8 @@ COPY . .
 
 # Install Node dependencies (dev deps needed for Vite/Tailwind build) and build frontend
 # Use NODE_ENV=development because Railway sets production by default, which skips devDependencies.
-# Update npm first to avoid 'Exit handler never called' bug in npm 10.8.2.
-RUN npm install -g npm@10.9.2 \
+# Upgrade npm via corepack (avoids using buggy npm 10.8.2 to install itself).
+RUN corepack enable && corepack prepare npm@10.9.2 --activate \
     && NODE_ENV=development npm install --no-audit --no-fund \
     && npm run build
 
